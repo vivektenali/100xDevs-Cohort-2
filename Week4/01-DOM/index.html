@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculate Sum</title>
+  </head>
+  <body style="
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    ">
+    <input style="padding: 10px" type="text" placeholder="First Number" id="firstnumber"></input><br>
+    <input style="padding: 10px" type="text" placeholder="Second Number" id="secondnumber"></input><br>
+    <button style="padding: 10px 20px;" onclick="populateDiv()">Calculate Sum</button>
+    <br>
+    <div id="finalResult"></div>
+
+    <script>
+     
+    function populateDiv(){
+        const firstnum = document.getElementById("firstnumber").value;
+        const secondnum = document.getElementById("secondnumber").value;
+        fetch("https://sum-server.100xdevs.com/sum?a="+firstnum+"&b="+secondnum).then(
+            function(response){
+                return response.text()
+            }
+        ).then(function(data){
+            document.getElementById("finalResult").innerHTML = "Sum: " + data;
+        })
+       
+    }
+    </script>
+  </body>
+</html>
